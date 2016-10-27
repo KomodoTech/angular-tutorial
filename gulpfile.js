@@ -42,7 +42,7 @@ gulp.task('distClean', function(){
 });
 
 // clean dist and then compile all files found in tsconfig.json
-gulp.task('tsCompile', ['distClean', 'tsconfigGlob'], function() {
+gulp.task('tsCompile', ['copy:libs'], function() {
   // list of ts files added to tsconfig.json either by atom or gulp task
   return gulp
   .src(tscConfig.files)
@@ -53,7 +53,7 @@ gulp.task('tsCompile', ['distClean', 'tsconfigGlob'], function() {
 });
 
 // update the tsconfig files based on the glob pattern
-gulp.task('tsconfigGlob', function () {
+gulp.task('tsconfigGlob', ['distClean'], function () {
   return tsconfigGlob({
     configPath: '.',
     indent: 2
@@ -168,10 +168,10 @@ gulp.task('tsBuild', ['tsCompile'], function(){
 
 ////////////////////// GLOBAL BUILD TASK //////////////////////
 // global build task with individual clean tasks as dependencies.
-gulp.task('build', ['tsCompile'], function(){
+gulp.task('build', ['tsconfigGlob'], function(){
+  gulp.start('tsCompile');
   if (buildProduction){
     gulp.start('bower');
     gulp.start('sassBuild');
-    gulp.start('copy:libs');
   }
 });
