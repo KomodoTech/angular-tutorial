@@ -1,21 +1,31 @@
 {
-    "compilerOptions": {
-      "outDir": "dist/app",
-      "target": "ES5",
-      "module": "system",
-      "sourceMap": true,
-      "emitDecoratorMetadata": true,
-      "experimentalDecorators": true,
-      "moduleResolution": "node",
-      "removeComments": false,
-      "noImplicitAny": true,
-      "suppressImplicitAnyIndexErrors": true
-    },
-    "filesGlob": [
-        "app/**/*.ts",
-        "typings/**/*.d.ts"
-    ],
-    "atom": {
-        "rewriteTsconfig": true
-    }
+  "compilerOptions": {
+    "outDir": "dist/app",
+    "target": "ES5",
+    "module": "system",
+    "sourceMap": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "removeComments": false,
+    "noImplicitAny": true,
+    "suppressImplicitAnyIndexErrors": true
+  },
+  "filesGlob": [
+    "app/*.ts"
+  ],
+  "atom": {
+    "rewriteTsconfig": true
+  },
+  "files": [
+    "app/app.component.ts",
+    "app/app.module.ts",
+    "app/calories.pipe.ts",
+    "app/main.ts",
+    "app/meal-display.component.ts",
+    "app/meal-edit.component.ts",
+    "app/meal-list.component.ts",
+    "app/meal-new.component.ts",
+    "app/meal.model.ts"
+  ]
 }

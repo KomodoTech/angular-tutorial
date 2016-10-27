@@ -42,7 +42,7 @@ gulp.task('distClean', function(){
 });
 
 // clean dist and then compile all files found in tsconfig.json
-gulp.task('tsCompile', ['distClean'], function() {
+gulp.task('tsCompile', ['distClean', 'tsconfigGlob'], function() {
   // list of ts files added to tsconfig.json either by atom or gulp task
   return gulp
   .src(tscConfig.files)
@@ -145,18 +145,13 @@ gulp.task('serve', ['build'], function() {
     }
   });
   gulp.watch(['resources/js/*.js'], ['jsBuild']); // vanilla js changes, reload.
-  gulp.watch('index.html', ['indexBuild']); //make sure all dependencies are in lib
-  gulp.watch(['*.html', '!index.html'], ['htmlBuild']); // html changes, reload.
+  gulp.watch(['*.html'], ['htmlBuild']); // html changes, reload.
   gulp.watch(['resources/styles/*.css', 'resources/styles/*.scss'], ['cssBuild']); // css or sass changes, concatenate all css/sass, build, reload.
   gulp.watch(['app/*.ts'], ['tsBuild']); // typescript files change, compile then reload.
 });
 
 gulp.task('jsBuild', function(){
   browserSync.reload();
-});
-
-gulp.task('indexBuild', ['copy:libs'], function() {
-    browserSync.reload();
 });
 
 gulp.task('htmlBuild', function(){
@@ -177,5 +172,6 @@ gulp.task('build', ['tsCompile'], function(){
   if (buildProduction){
     gulp.start('bower');
     gulp.start('sassBuild');
+    gulp.start('copy:libs');
   }
 });
