@@ -1,0 +1,26 @@
+{
+  "name": "angular-tutorial",
+  "description": "angular official documentation tutorial",
+  "main": "main.js",
+  "authors": [
+    "alexandre leibler"
+  ],
+  "license": "GPL-3.0",
+  "keywords": [
+    "tutorial",
+    "typescript",
+    "angular2",
+    "angular"
+  ],
+  "homepage": "https://github.com/KomodoTech/angular-tutorial",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7"
+  }
+}
