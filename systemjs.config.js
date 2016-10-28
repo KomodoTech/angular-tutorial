@@ -1,13 +1,8 @@
-/**
- * System configuration for Angular 2 samples
+ /**
+ * System configuration for Angular samples
  * Adjust as necessary for your application needs.
  */
 (function (global) {
-    /**
-   * System configuration for Angular samples
-   * Adjust as necessary for your application needs.
-   */
-  declare var System: any;
 
   System.config({
     paths: {
