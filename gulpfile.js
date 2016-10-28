@@ -119,12 +119,11 @@ gulp.task('cssBower', ['cssBowerClean'], function() {
 });
 
 // copy static assets into dist - i.e. the non TypeScript compiled source
-gulp.task('copy:assets', ['distClean'], function() {
+gulp.task('bower', ['jsBower', 'cssBower'], function() {
   return gulp.src(['build/**/*', 'index.html'], { base : './' })
-    .pipe(gulp.dest('dist'))
+    .pipe(gulp.dest('dist'));
 });
 
-gulp.task('bower', ['jsBower', 'cssBower', 'copy:assets']);
 
 ////////////////////// SASS //////////////////////
 
