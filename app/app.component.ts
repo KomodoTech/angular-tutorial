@@ -1,9 +1,5 @@
 import { Component } from '@angular/core';
-
-export class Hero {
-    id: number;
-    name: string;
-}
+import { Hero } from './hero.model';
 
 const HEROES: Hero[] = [
   { id: 11, name: 'Mr. Nice' },
@@ -21,32 +17,24 @@ const HEROES: Hero[] = [
 @Component({
     selector: 'hero-app',
     template: `
-    <h1>{{title}}</h1>
+        <h1>{{title}}</h1>
 
-    <h2>My Heroes</h2>
-    <ul class="heroes">
-        <li *ngFor="let hero of heroes"
-        [class.selected]="hero === selectedHero"
-        (click)="onSelect(hero)">
+        <h2>My Heroes</h2>
+        <ul class="heroes">
+            <li *ngFor="let hero of heroes"
+            [class.selected]="hero === selectedHero"
+            (click)="onSelect(hero)">
 
-            <!-- * asterix before directive indicates that the element and all
-            of its children constitute a "master template"-->
-            <!--NOTE: [class.selected] is a property binding that sets current elements class to selected if the expression to its right evaluates to
-            true-->
-            <span class="badge">{{hero.id}}</span> {{hero.name}}
-        </li>
-    </ul>
-
-    <div *ngIf="selectedHero">
-        <h2>{{selectedHero.name}} details!</h2>
-        <div>
-            <label>id: </label>{{selectedHero.id}}
-        </div>
-        <div>
-            <label for="hero-name">name: </label>
-            <input id="hero-name" [(ngModel)]="selectedHero.name" placeholder="name">
-        </div>
-    </div>
+                <!-- * asterix before directive indicates that the element and all
+                of its children constitute a "master template"-->
+                <!--NOTE: [class.selected] is a property binding that sets current elements class to selected if the expression to its right evaluates to
+                true-->
+                <span class="badge"><span class="text">{{hero.id}}</span></span><span class="text">{{hero.name}}</span>
+            </li>
+        </ul>
+        <hero-detail
+        [hero]="selectedHero"
+        ></hero-detail>
     `
 })
 export class AppComponent {
@@ -57,7 +45,7 @@ export class AppComponent {
     heroes = HEROES;    //NOTE: TypeScript can infer the type in this case
 
     selectedHero: Hero;
-    onSelect(hero: Hero) {
+    onSelect(hero: Hero): void {
         this.selectedHero = hero;
     }
 }
