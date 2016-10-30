@@ -25,9 +25,14 @@ const HEROES: Hero[] = [
 
     <h2>My Heroes</h2>
     <ul class="heroes">
-        <li *ngFor="let hero of heroes" (click)="onSelect(hero)">
-            <!-- NOTE: * asterix before directive indicates that the element and all
+        <li *ngFor="let hero of heroes"
+        [class.selected]="hero === selectedHero"
+        (click)="onSelect(hero)">
+
+            <!-- * asterix before directive indicates that the element and all
             of its children constitute a "master template"-->
+            <!--NOTE: [class.selected] is a property binding that sets current elements class to selected if the expression to its right evaluates to
+            true-->
             <span class="badge">{{hero.id}}</span> {{hero.name}}
         </li>
     </ul>
