@@ -22,6 +22,9 @@
     "app/app.module.ts",
     "app/hero-detail.component.ts",
     "app/hero.model.ts",
-    "app/main.ts"
+    "app/hero.service.ts",
+    "app/main.ts",
+    "app/mock-heroes.ts",
+    "app/testGulp.ts"
   ]
 }

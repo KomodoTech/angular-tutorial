@@ -35,29 +35,30 @@ const tslint = require('gulp-tslint');
 const tsconfigGlob = require('tsconfig-glob');
 
 ////////////////////// TYPESCRIPT //////////////////////
-// clean dist task
-gulp.task('distClean', function(){
-  // delete all files in the distribution directory
-  return del('dist/**/*');
+
+// clean dist compiled ts task
+gulp.task('distAppClean', function(){
+  // delete all files in the distribution app directory
+  return del('dist/app/*');
 });
 
-// clean dist and then compile all files found in tsconfig.json
-gulp.task('tsCompile', ['copy:libs'], function() {
+// update the tsconfig files based on the glob pattern
+gulp.task('tsconfigGlob', ['distAppClean'], function () {
+  return tsconfigGlob({
+    configPath: '.',
+    indent: 2
+  });
+});
+
+// compile all files found in tsconfig.json
+gulp.task('tsCompile', ['tsconfigGlob'], function() {
   // list of ts files added to tsconfig.json either by atom or gulp task
   return gulp
   .src(tscConfig.files)
   .pipe(sourcemaps.init())
   .pipe(typescript(tscConfig.compilerOptions))
   .pipe(sourcemaps.write('.'))
-  .pipe(gulp.dest('dist/app'));
-});
-
-// update the tsconfig files based on the glob pattern
-gulp.task('tsconfigGlob', ['distClean'], function () {
-  return tsconfigGlob({
-    configPath: '.',
-    indent: 2
-  });
+  .pipe(gulp.dest('./dist/app'));
 });
 
 // typescript linting
@@ -69,33 +70,37 @@ gulp.task('tslint', function() {
 
 
 ////////////////////// NODE_MODULES //////////////////////
-// copy npm dependencies to dist/lib
 
-gulp.task('copy:libs', ['distClean'], function() {
+// clean dist lib task
+gulp.task('distLibClean', function(){
+  // delete all files in the distribution lib directory
+  return del('dist/lib/*');
+});
+
+// copy npm dependencies to dist/lib
+gulp.task('copy:libs', ['distLibClean'], function() {
   return gulp.src([
     'node_modules/core-js/client/shim.min.js',
     'node_modules/zone.js/dist/zone.js',
     'node_modules/reflect-metadata/Reflect.js',
     'node_modules/systemjs/dist/system.src.js',
-
-    // 'node_modules/angular2/bundles/angular2-polyfills.js',
-    // 'node_modules/systemjs/dist/system.src.js',
-    // 'node_modules/rxjs/bundles/Rx.js',
-    // 'node_modules/angular2/bundles/angular2.dev.js',
-    // 'node_modules/angular2/bundles/router.dev.js',
-    // 'node_modules/node-uuid/uuid.js',
-    // 'node_modules/immutable/dist/immutable.js'
   ])
-    .pipe(gulp.dest('dist/lib'))
+    .pipe(gulp.dest('./dist/lib'))
 });
 
 
 ////////////////////// BOWER //////////////////////
-// when adding a new bower depndency:
+// when adding a new bower dependency:
 // stop the server
 // always use the `bower install --save` flag.
 // run `gulp bower` to build vendor files
 // restart server.
+
+// clean dist static task
+gulp.task('distStaticClean', function(){
+  // delete all files in the distribution static directory
+  return del('dist/static/*');
+});
 
 gulp.task('jsBowerClean', function(){
   return del(['./build/js/vendor.min.js']);
@@ -118,10 +123,11 @@ gulp.task('cssBower', ['cssBowerClean'], function() {
     .pipe(gulp.dest('./build/css'));
 });
 
-// copy static assets into dist - i.e. the non TypeScript compiled source
-gulp.task('bower', ['jsBower', 'cssBower'], function() {
+// combine static files and make smaller and put the results in build, then
+// copy static assets into dist
+gulp.task('bower', ['jsBower', 'cssBower', 'distStaticClean'], function() {
   return gulp.src(['build/**/*', 'index.html'], { base : './' })
-    .pipe(gulp.dest('dist'));
+    .pipe(gulp.dest('./dist/static'));
 });
 
 
@@ -167,10 +173,12 @@ gulp.task('tsBuild', ['tsCompile'], function(){
 
 ////////////////////// GLOBAL BUILD TASK //////////////////////
 // global build task with individual clean tasks as dependencies.
-gulp.task('build', ['tsconfigGlob'], function(){
+gulp.task('build', function(){
   gulp.start('tsCompile');
   if (buildProduction){
+    //INITIALIZATION HERE
     gulp.start('bower');
     gulp.start('sassBuild');
+    gulp.start('copy:libs');
   }
 });

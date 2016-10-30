@@ -1,18 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+
 import { Hero } from './hero.model';
 
-const HEROES: Hero[] = [
-  { id: 11, name: 'Mr. Nice' },
-  { id: 12, name: 'Narco' },
-  { id: 13, name: 'Bombasto' },
-  { id: 14, name: 'Celeritas' },
-  { id: 15, name: 'Magneta' },
-  { id: 16, name: 'RubberMan' },
-  { id: 17, name: 'Dynama' },
-  { id: 18, name: 'Dr IQ' },
-  { id: 19, name: 'Magma' },
-  { id: 20, name: 'Tornado' }
-];
+import { HeroService } from './hero.service';
 
 @Component({
     selector: 'hero-app',
@@ -35,14 +25,43 @@ const HEROES: Hero[] = [
         <hero-detail
         [hero]="selectedHero"
         ></hero-detail>
-    `
+    `,
+
+    providers: [HeroService]
 })
 export class AppComponent {
-    constructor(){
-        // console.log(this.heroes);
+    constructor(private heroService: HeroService) {
+        //NOTE: KEEP CONSTRUCTOR AS SIMPLE AS POSSIBLE. E.G. DON'T INIT
+        // DATASET FROM HERE (instead use a lifecycle hook like OnInit).
+        /*  heroService is a private property that will serve as the service
+         *  injection site. Angular will supply an instance of HeroService when
+         *  AppComponent is created (this is communicated through the
+         *  PROVIDERS ARRAY PROPERTY above)
+         */
     }
     title = 'Tour of Heroes';
-    heroes = HEROES;    //NOTE: TypeScript can infer the type in this case
+
+    heroes: Hero[] = [];
+    getHeroes(): void {
+        this.heroes = this.heroService.getHeroes();
+    }
+
+    //NOTE: DO NOT CALL ON SERVICE CONSTRUCTOR TO GET DATA!
+    /* doing something along these lines:
+        heroSevice = new HeroService();
+       would work for the current implementation of the service but if the service
+       changes its constructor, or making it cache data instead creating a new array,
+       or making the array different if in offline mode or testing, we would have a
+       very hard time dealing with that without creating a hacky mess and needing to
+       go through all of our code to find every time that we executed the service
+       constructor!
+
+    TLDR: INJECT SERVICE INSTEAD
+    */
+    // ANGULAR TAKES CARE OF CALLING THIS FUNCTION AT THE APPROPRIATE TIME
+    ngOnInit(): void {
+        this.getHeroes();
+    }
 
     selectedHero: Hero;
     onSelect(hero: Hero): void {

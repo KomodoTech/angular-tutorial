@@ -1,0 +1,14 @@
+import { Injectable } from '@angular/core';
+
+import { Hero } from './hero.model';
+import { HEROES } from './mock-heroes';
+
+//NOTE: The injectable decorator emits metadata about our service that
+// angular may need to inject other dependencies into this service.
+// At the moment we have no dependencies but this could change
+@Injectable() export class HeroService {
+    getHeroes(): Hero[] {
+        return HEROES;
+    }
+
+}
