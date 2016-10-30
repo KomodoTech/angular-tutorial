@@ -24,7 +24,6 @@
     "app/hero.model.ts",
     "app/hero.service.ts",
     "app/main.ts",
-    "app/mock-heroes.ts",
-    "app/testGulp.ts"
+    "app/mock-heroes.ts"
   ]
 }

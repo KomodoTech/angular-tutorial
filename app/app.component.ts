@@ -41,9 +41,18 @@ export class AppComponent {
     }
     title = 'Tour of Heroes';
 
-    heroes: Hero[] = [];
+    heroes = []; // IS THIS OF TYPE Hero[] OR SOMETHING ELSE BECAUSE OF PROMISE
     getHeroes(): void {
-        this.heroes = this.heroService.getHeroes();
+        /* our heroService.getHeroes now returns a Promise Object
+         * using the then method we tell our component that when
+         * the promise is resolved, we set this.heroes to the result
+         */
+         // NOTE: => is a shorthand for an anonymous callback function. The
+         // main advantage besides being concise is that it does not bind "this"!
+
+        // this.heroService.getHeroes().then(heroes => this.heroes = heroes);
+
+        this.heroService.getHeroesSlowly().then(heroes => this.heroes = heroes);
     }
 
     //NOTE: DO NOT CALL ON SERVICE CONSTRUCTOR TO GET DATA!

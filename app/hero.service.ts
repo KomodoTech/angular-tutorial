@@ -7,8 +7,15 @@ import { HEROES } from './mock-heroes';
 // angular may need to inject other dependencies into this service.
 // At the moment we have no dependencies but this could change
 @Injectable() export class HeroService {
-    getHeroes(): Hero[] {
-        return HEROES;
+    getHeroes(): Promise<Hero[]> {
+        // Eventually HEROES will be replaced with a call to a server
+        return Promise.resolve(HEROES);
+    }
+
+    // SIMULATE SLOW CONNECTION
+    getHeroesSlowly(): Promise<Hero[]> {
+        return new Promise<Hero[]>(resolve => setTimeout(resolve, 2000)) // delay
+        .then(() => this.getHeroes());
     }
 
 }
