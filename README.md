@@ -21,7 +21,7 @@ An application built in angular2 that allows us to manage our "stable of heroes"
 
 
 ----
-### **Setup/Installation Requirements ( * Nix) **
+### **Setup/Installation Requirements ( * Nix)**
 
 If editing or running locally:
 
