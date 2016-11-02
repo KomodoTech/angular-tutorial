@@ -40,13 +40,18 @@
     "gulp-typescript": "^3.0.2",
     "gulp-uglify": "^2.0.0",
     "gulp-util": "^3.0.7",
-    "rxjs": "^5.0.0-beta.12",
     "tsconfig-glob": "^0.4.3",
     "tslint": "^3.15.1",
     "typescript": "^2.0.6",
     "typings": "^1.4.0"
   },
   "dependencies": {
+    "rxjs": "^5.0.0-beta.12",
+    "core-js": "^2.4.1",
+    "reflect-metadata": "^0.1.8",
+    "systemjs": "^0.19.40",
+    "zone.js": "^0.6.26",
+    "angular-in-memory-web-api": "^0.1.13",
     "@angular/common": "^2.1.2",
     "@angular/compiler": "^2.1.2",
     "@angular/core": "^2.1.2",
@@ -54,12 +59,6 @@
     "@angular/http": "^2.1.2",
     "@angular/platform-browser": "^2.1.2",
     "@angular/platform-browser-dynamic": "^2.1.2",
-    "@angular/router": "^3.1.2",
-    "angular-in-memory-web-api": "^0.1.13",
-    "core-js": "^2.4.1",
-    "reflect-metadata": "^0.1.8",
-    "rxjs": "^5.0.0-beta.12",
-    "systemjs": "^0.19.40",
-    "zone.js": "^0.6.26"
+    "@angular/router": "^3.1.2"
   }
 }

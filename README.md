@@ -67,7 +67,11 @@ From the command line, run the following commands:
 
 ### **Known Bugs**
 
-No known bugs.
+If `npm install` fails, and prints error messages that complain about rxjs@5.0.0-beta.12 not being installed, please attempt to run the following commands:
+
+* 1. `npm install rxjs@5.0.0-beta.12 --save`
+* 2. `npm install`
+
 
 ----
 ### **Support and contact details**
