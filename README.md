@@ -1,6 +1,6 @@
 # **Angular Tutorial**
 
-##### Following the official angular2 Tour of Heroes tutorial. 10.30.2016
+##### Following the official angular2 Tour of Heroes tutorial.  10.30.2016
 #
 ##### By [Alexandre Leibler](https://github.com/KomodoTech)
 #
@@ -17,41 +17,51 @@ An application built in angular2 that allows us to manage our "stable of heroes"
 |:---------------------------------------------------------------------:|:---------------------------------------------------------------------------:|:-------------------------------------------------------------------------------------------------------------------:|
 | View dashboard | Click Dashboard Button | Result: Display Top Heroes, Heroes Search |
 | View hero detail| Click Any Top Hero Badge| Result: Display Hero Details: Name, ID, Edit Name Form, Back Button|
-
 | View heroes' list | Click Heroes Button | Result: Display All Heroes, Add New Hero Form, Remove Individual Hero|
 
 
 ----
-### **Setup/Installation Requirements (\*Nix) **
+### **Setup/Installation Requirements (\*\Nix) **
 
 If editing or running locally:
 
 ##### 1. If Node.js is not yet installed on your system please install it - check link below for installation instructions
 
 Standard Standalone Installer:
+
 https://nodejs.org/en/download/
 
+
 Using Your Favorite Package Manager:
+
 https://nodejs.org/en/download/package-manager/
+
+
 
 ##### 2. Gulp and Bower should be installed globally
 
-If they are not installeg yet, from the command line, run the following command:
+If they are not installed yet, from the command line, run the following command:
+
 `npm install bower gulp -g`
+
+
 
 ##### 3. Clone this repository: https://github.com/KomodoTech/angular-tutorial.git
 
 From the command line, navigate to the directory in which you want the angular-tutorial project to reside and run:
+
 `git clone https://github.com/KomodoTech/angular-tutorial.git`
+
+
 
 ##### 4. Install Dependencies
 
 From the command line, run the following commands:
 
-* 1. npm install
-* 2. bower install
-* 3. gulp build --production
-* 4. gulp serve
+* 1. `npm install`
+* 2. `bower install`
+* 3. `gulp build --production`
+* 4. `gulp serve`
 
 ----
 
