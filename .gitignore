@@ -1,12 +1,11 @@
-node_modules
-bower_components
+node_modules/
+bower_components/
 app/**/*.js
 app/**/*.map
-dist
-build
+dist/
+build/
 jspm_packages
-
-typings
+typings/
 
 *~
 *.swo
