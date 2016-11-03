@@ -23,6 +23,7 @@
     "app/hero-detail.component.ts",
     "app/hero.model.ts",
     "app/hero.service.ts",
+    "app/heroes.component.ts",
     "app/main.ts",
     "app/mock-heroes.ts"
   ]
