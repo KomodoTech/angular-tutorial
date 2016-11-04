@@ -15,7 +15,12 @@ import { HEROES } from './mock-heroes';
     // SIMULATE SLOW CONNECTION
     getHeroesSlowly(): Promise<Hero[]> {
         return new Promise<Hero[]>(resolve => setTimeout(resolve, 2000)) // delay
-        .then(() => this.getHeroes());
+            .then(() => this.getHeroes());
+    }
+
+    getHero(id: number): Promise<Hero> {
+        return this.getHeroes()
+            .then(heroes => heroes.find(hero => hero.id === id));
     }
 
 }

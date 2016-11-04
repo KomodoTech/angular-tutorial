@@ -5,9 +5,7 @@
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "tslint": "tslint -c tslint.json app/**/*.ts",
-    "postinstall": "typings install",
-    "typings": "typings"
+    "tslint": "tslint -c tslint.json app/**/*.ts"
   },
   "repository": {
     "type": "git",
@@ -26,9 +24,6 @@
   },
   "homepage": "https://github.com/KomodoTech/angular-tutorial#readme",
   "devDependencies": {
-    "@types/core-js": "^0.9.34",
-    "@types/jasmine": "^2.5.36",
-    "@types/node": "^6.0.46",
     "bower-files": "^3.14.1",
     "browser-sync": "^2.17.5",
     "del": "^2.2.2",
@@ -37,7 +32,7 @@
     "gulp-sass": "^2.3.2",
     "gulp-sourcemaps": "^2.2.0",
     "gulp-tslint": "^6.1.2",
-    "gulp-typescript": "^3.0.2",
+    "gulp-typescript": "^3.1.0",
     "gulp-uglify": "^2.0.0",
     "gulp-util": "^3.0.7",
     "tsconfig-glob": "^0.4.3",
@@ -46,6 +41,10 @@
     "typings": "^1.4.0"
   },
   "dependencies": {
+    "@types/core-js": "^0.9.34",
+    "@types/jasmine": "^2.5.37",
+    "@types/jquery": "^2.0.33",
+    "@types/node": "^6.0.46",
     "rxjs": "^5.0.0-beta.12",
     "core-js": "^2.4.1",
     "reflect-metadata": "^0.1.8",

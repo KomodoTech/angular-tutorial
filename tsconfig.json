@@ -1,16 +1,29 @@
 {
   "compilerOptions": {
     "outDir": "dist/app",
-    "target": "ES5",
-    "module": "system",
+    "target": "es5",
+    "module": "es6",
     "sourceMap": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "removeComments": false,
     "noImplicitAny": true,
-    "suppressImplicitAnyIndexErrors": true
+    "suppressImplicitAnyIndexErrors": true,
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "types": [
+      "core-js",
+      "jasmine",
+      "jquery",
+      "node"
+    ]
   },
+  "exclude": [
+    "node_modules",
+    "jspm_packages"
+  ],
   "filesGlob": [
     "app/*.ts"
   ],
@@ -20,6 +33,7 @@
   "files": [
     "app/app.component.ts",
     "app/app.module.ts",
+    "app/dashboard.component.ts",
     "app/hero-detail.component.ts",
     "app/hero.model.ts",
     "app/hero.service.ts",

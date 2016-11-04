@@ -58,7 +58,7 @@ gulp.task('tsCompile', ['tsconfigGlob'], function() {
   .pipe(sourcemaps.init())
   .pipe(typescript(tscConfig.compilerOptions))
   .pipe(sourcemaps.write('.'))
-  .pipe(gulp.dest('./dist/app'));
+  .pipe(gulp.dest('dist/app'));
 });
 
 // typescript linting
@@ -85,7 +85,7 @@ gulp.task('copy:libs', ['distLibClean'], function() {
     'node_modules/reflect-metadata/Reflect.js',
     'node_modules/systemjs/dist/system.src.js',
   ])
-    .pipe(gulp.dest('./dist/lib'))
+    .pipe(gulp.dest('dist/lib'))
 });
 
 
@@ -103,31 +103,31 @@ gulp.task('distStaticClean', function(){
 });
 
 gulp.task('jsBowerClean', function(){
-  return del(['./build/js/vendor.min.js']);
+  return del(['build/js/vendor.min.js']);
 });
 
 gulp.task('jsBower', ['jsBowerClean'], function() {
   return gulp.src(lib.ext('js').files)
     .pipe(concat('vendor.min.js'))
     .pipe(uglify())
-    .pipe(gulp.dest('./build/js'));
+    .pipe(gulp.dest('build/js'));
 });
 
 gulp.task('cssBowerClean', function(){
-  return del(['./build/css/vendor.css']);
+  return del(['build/css/vendor.css']);
 });
 
 gulp.task('cssBower', ['cssBowerClean'], function() {
   return gulp.src(lib.ext('css').files)
     .pipe(concat('vendor.css'))
-    .pipe(gulp.dest('./build/css'));
+    .pipe(gulp.dest('build/css'));
 });
 
 // combine static files and make smaller and put the results in build, then
 // copy static assets into dist
 gulp.task('bower', ['jsBower', 'cssBower', 'distStaticClean'], function() {
   return gulp.src(['build/**/*', 'index.html'], { base : './' })
-    .pipe(gulp.dest('./dist/static'));
+    .pipe(gulp.dest('dist/static'));
 });
 
 
@@ -138,7 +138,7 @@ gulp.task('sassBuild', function() {
     .pipe(sourcemaps.init())
     .pipe(sass())
     .pipe(sourcemaps.write())
-    .pipe(gulp.dest('./build/css'));
+    .pipe(gulp.dest('build/css'));
 });
 
 ////////////////////// SERVER //////////////////////
