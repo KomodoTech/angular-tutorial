@@ -12,7 +12,8 @@
     "suppressImplicitAnyIndexErrors": true
   },
   "filesGlob": [
-    "app/*.ts"
+    "app/*.ts",
+    "typings/*.ts"
   ],
   "atom": {
     "rewriteTsconfig": true
